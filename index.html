@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        background-color: black;
+    }
+    
+    .table {
+        text-align: center;
+        color: aliceblue;
+    }
+    
+    input[type="text"] {
+        color: white;
+    }
+    
+    select#panelDrop {
+        color: white;
+    }
+    
+    button {
+        color: white;
+    }
+    
+    h3 {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Solar System Calculator</h1>
+
+    <h3>Customer Electicity Bill</h3>
+    <div class="table">
+        <table>
+            <tr>
+                <th>Eleciticy per month kWh</th>
+                <th>Cost per month</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="elUser"></td>
+                <td><input type="text" name="elCost"></td>
+            </tr>
+        </table>
+        <h3>Our Solar System:</h3>
+    </div>
+    <div class="table">
+        <table>
+            <tr>
+                <th>Type of Panels</th>
+                <th>Number of Panels</th>
+            </tr>
+            <tr>
+                <td id="textField"><select id="panelDrop" name="cell1">
+                <option value="300">300</option>
+                <option value="370">370</option>
+                <option value="400">440</option>
+                <option value="otherVal">Other Value</option>
+                <!--Other value changes in to text field-->
+              </select>
+                    <td><input type="text" name="pNo"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="table">
+        <button type="button">Calculate</button>
+        <h3>Performance of System</h3>
+        <table>
+            <tr>
+                <th>System Size</th>
+                <th>Per Day</th>
+                <th>Per Year</th>
+
+            </tr>
+            <tr>
+                <td id="systemSize"> <span>0</span>
+                    <p>kW</p>
+                </td>
+                <td id="perDay"> <span>0</span>
+                    <p>kWh</p>
+                </td>
+                <td id="perYear"> <span>0</span>
+                    <p>kWh</p>
+
+                </td>
+
+            </tr>
+        </table>
+    </div>
+    <div class="table">
+        <h3>Savings per year</h3>
+        <table>
+            <tr>
+                <th>Yearly Solar Generated</th>
+                <th>Yearly Electrecity Used</th>
+                <th>Electrecity used with solar</th>
+                <th>Electrecity saved</th>
+                <th>Electrecity saved</th>
+            </tr>
+            <tr>
+                <td id="ySG"> <span>0</span>
+                    <p>kWh</p>
+                </td>
+                <td id="yEU"> <span>0</span>
+                    <p>kWh</p>
+                </td>
+                <td id="eUWS"> <span>0</span>
+                    <p>kWh</p>
+                </td>
+                <td id="eS"> <span>0</span>
+                    <p>kWh</p>
+                </td>
+                <td id="eS"> <span>0</span>
+                    <p>%</p>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <h3>Graph</h3>
+</body>
+
+<script>
+    const userPanels = document.querySelector('input[name="pNo"]')
+    const panelDrop = document.getElementById("panelDrop")
+    const selSystemSize = document.getElementById("systemSize");
+    const selPerDay = document.getElementById("perDay");
+    const selPerYear = document.getElementById("perYear");
+    const textField = document.getElementById("textField");
+    const elUsed = document.querySelector('input[name="elUser"]');
+    const elCost = document.querySelector('input[name="elCost"]');
+    // separate the functions fro each block | sole this with the this object
+
+    // TO FINISH UP do the SOlar Generated Electicity used create new function for separate filds
+    elUsed.addEventListener('change', () => {
+        const electricityCost = elCost.value
+        const electricityUsed = elUsed.value
+
+        console.log(electricityCost + " " + electricityUsed)
+
+    })
+
+    elCost.addEventListener('change', () => {
+        const electricityCost = elCost.value
+        const electricityUsed = elUsed.value
+
+        console.log(electricityCost + " " + electricityUsed)
+
+    })
+
+    userPanels.addEventListener('change', () => {
+        const panelsNumber = userPanels.value
+        const panelsWatt = panelDrop.value
+        updateValues(panelsNumber, panelsWatt);
+    })
+
+    panelDrop.addEventListener('change', () => {
+        const panelsNumber = userPanels.value
+        const panelsWatt = panelDrop.value
+        updateValues(panelsNumber, panelsWatt);
+        if (panelDrop.value == "otherVal") {
+            textField.innerHTML = '<input type="text" value=" ">';
+            textField.addEventListener('change', () => {
+
+                console.log(textField.value)
+            })
+        }
+
+    })
+
+    function updateValues(panelsNumber, panelsWatt) {
+        //System Size 
+        selSystemSize.innerHTML = parseInt(panelsNumber * panelsWatt / 1000) + " kW"
+            //Per Day Production 
+        selPerDay.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6) + " kWh"
+        selPerYear.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6 * 365) + " kWh"
+        ySG.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6 * 365) + " kWh"
+
+    }
+
+    function updateYearElectricity(electricityCost, electricityUsed) {
+
+
+    }
+
+
+
+    // Per Year Production 
+    // Solar generated for the year 
+    // Elecricity Used for the year
+    // Elecricity used after solar 
+    // Difference between electicity saved 
+
+    // Graph -> based per day and month
+
+
+    /*
+
+    // add github
+- https://blog.gitnux.com/guides/how-to-push-code-to-github-from-visual-studio-code/
+
+- During the Day | - During the night
+20 | 
+
+if the value is higher than 100 then take the entered number and add or deduct from the during the day 
+
+
+which field was last edited 
+
+if edited change it to false
+
+- dragg button  
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/range
+
+ - Postcode calculate government rebate 
+
+- East 9:00 > 12:00 | North 9:00 - 3:00 () | West 12:00 - 3:00 (7:30) > winter 
+
+- CSS
+
+ 
+
+- div on the left side 
+https://codepen.io/team/css-tricks/pen/ZYmaQe
+
+- graphs on the right 
+
+- calculate for whole yaer graphs
+
+sunRadiationYaer 
+
+[6.1,4.9,4,2.3,1.7,1.4,1.6,2.3,2.8,4.2,5.3,5.7]
+
+https://www.w3schools.com/ai/ai_chartjs.asp
+
+
+------ 
+recomended system 
+prices 
+inverter range if 6.6 then select name under that 
+
+
+    const inverterSingleGrowat = [
+    {
+        name: 'Growatt MIN-5000TL-X',
+        sizePower: '6.665',
+        price: 540,
+        phase: 'Single Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: "Users/Solar Arena/Desktop/5000-TLX.jpg"
+    },
+    {
+       	name: 'Growatt MIN-6000TL-X',
+        sizePower: '7.998',
+        price: 600,
+        phase: 'Single Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Growatt MIN-8000TL-X',
+        sizePower: '10.664',
+        price: 950,
+        phase: 'Single Phase',
+        noStrings: 3,
+	mppTrackers: 3,
+        image: ""
+    },
+    {
+        name: 'Growatt MIN-10000TL-X',
+        sizePower: '13.200',
+        price: 1150,
+        phase: 'Single Phase',
+        noStrings: 4,
+	mppTrackers: 3,
+        image: ""
+    }
+    ];
+
+
+
+const inverterThreeGrowat = [
+{
+        name: 'Growatt MOD-5000TL3-X',
+        sizePower: '6.665',
+        price: 900,
+        phase: 'Single Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: "Users/Solar Arena/Desktop/5000-TLX.jpg"
+    },
+    {
+       	name: 'Growatt MOD-6000TL3-X',
+        sizePower: '7.998',
+        price: 1000,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Growatt MOD-8000TL3-X-AU',
+        sizePower: '10.664',
+        price: 1150,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Growatt MOD-10KTL3-X-AU',
+        sizePower: '13.200',
+        price: 1250,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Growatt MOD-15KTL3-X',
+        sizePower: '19.995',
+        price: 1650,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    }
+  ];
+
+
+const inverterThreeFronius = [
+{
+        name: 'Symo GEN24 Plus 5.0',
+        sizePower: '6.665',
+        price:  ,
+        phase: 'Single Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: "Users/Solar Arena/Desktop/5000-TLX.jpg"
+    },
+    {
+       	name: 'Symo GEN24 Plus 6.0',
+        sizePower: '7.998',
+        price: =,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Symo GEN24 Plus 10.0',
+        sizePower: '10.664',
+        price: ,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    }
+  ];
+
+
+const inverterThreeFronius = [
+{
+        name: 'Primo GEN24 Plus 5.0',
+        sizePower: '6.665',
+        price:  ,
+        phase: 'Single Phase',
+        noStrings: 4,
+	mppTrackers: 2,
+        image: "Users/Solar Arena/Desktop/5000-TLX.jpg"
+    },
+    {
+       	name: 'Primo GEN24 Plus 6.0',
+        sizePower: '7.998',
+        price: =,
+        phase: 'Single Phase',
+        noStrings: 4,
+	mppTrackers: 2,
+        image: ""
+    },
+    {
+        name: 'Primo GEN24 Plus 5.0',
+        sizePower: '10.664',
+        price: ,
+        phase: 'Three Phase',
+        noStrings: 3,
+	mppTrackers: 2,
+        image: ""
+    }
+  ];
+
+    */
+</script>
+
+</html>
