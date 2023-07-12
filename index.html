@@ -7,203 +7,240 @@
     <title>Document</title>
 </head>
 <style>
+    /* Pen-specific styles */
+    
     * {
-        background-color: black;
+        box-sizing: border-box;
+        margin: 0px;
+        padding: 0px;
     }
     
-    .table {
+    body {
+        font-size: 1.25rem;
+        font-family: sans-serif;
+        line-height: 150%;
+        text-shadow: 0 2px 2px #ffffff;
+    }
+    
+    section {
+        color: #000000;
         text-align: center;
-        color: aliceblue;
     }
     
-    input[type="text"] {
-        color: white;
+    div {
+        height: 100%;
     }
     
-    select#panelDrop {
-        color: white;
+    h1 {
+        font-size: 1.75rem;
+        margin: 0 0 0.75rem 0;
+    }
+    /* Pattern styles */
+    
+    .container {
+        display: table;
+        width: 100%;
     }
     
-    button {
-        color: white;
+    .left-half {
+        padding-top: 45px;
+        display: flex;
+        background-color: #bdb9b4;
+        position: absolute;
+        left: 0px;
+        width: 30%;
+        justify-content: center;
     }
     
-    h3 {
-        text-align: center;
+    table {
+        padding-top: 73px;
+    }
+    
+    .right-half {
+        padding-top: 45px;
+        display: flex;
+        background-color: #ffffff;
+        position: absolute;
+        right: 0px;
+        width: 70%;
+        justify-content: center;
     }
 </style>
 
 <body>
-    <h1>Solar System Calculator</h1>
 
-    <h3>Customer Electicity Bill</h3>
-    <div class="table">
-        <table>
-            <tr>
-                <th>Eleciticy per month kWh</th>
-                <th>Cost per month</th>
-            </tr>
-            <tr>
-                <td><input type="text" name="elUser"></td>
-                <td><input type="text" name="elCost"></td>
-            </tr>
-        </table>
-        <h3>Our Solar System:</h3>
-    </div>
-    <div class="table">
-        <table>
-            <tr>
-                <th>Type of Panels</th>
-                <th>Number of Panels</th>
-            </tr>
-            <tr>
-                <td id="textField"><select id="panelDrop" name="cell1">
+    <section class="container">
+        <div class="left-half">
+            <div class="content">
+                <h1>Solar System Calculator</h1>
+                <h3>Customer Electicity Bill</h3>
+                <table>
+                    <tr>
+                        <th>Eleciticy per month kWh</th>
+                        <th>Cost per month</th>
+                    </tr>
+                    <tr>
+                        <td><input type="text" name="elUsed"></td>
+                        <td><input type="text" name="elCost"></td>
+                    </tr>
+                </table>
+                <h3>Our Solar System:</h3>
+                <table>
+                    <tr>
+                        <th>Type of Panels</th>
+                        <th>Number of Panels</th>
+                    </tr>
+                    <tr>
+                        <td id="textField"><select id="panelWatt" name="cell1">
                 <option value="300">300</option>
                 <option value="370">370</option>
                 <option value="400">440</option>
                 <option value="otherVal">Other Value</option>
                 <!--Other value changes in to text field-->
-              </select>
-                    <td><input type="text" name="pNo"></td>
-            </tr>
-        </table>
-    </div>
-    <div class="table">
-        <button type="button">Calculate</button>
-        <h3>Performance of System</h3>
-        <table>
-            <tr>
-                <th>System Size</th>
-                <th>Per Day</th>
-                <th>Per Year</th>
+                </select>
+                            <td><input type="text" name="noPanels"></td>
+                    </tr>
+                </table>
+                <button class="btnCal">Calculate</button>
+            </div>
+        </div>
 
-            </tr>
-            <tr>
-                <td id="systemSize"> <span>0</span>
-                    <p>kW</p>
-                </td>
-                <td id="perDay"> <span>0</span>
-                    <p>kWh</p>
-                </td>
-                <td id="perYear"> <span>0</span>
-                    <p>kWh</p>
+        <!-- Performance of System -->
+        <div class="right-half">
+            <div class="content">
+                <h3>Performance of System</h3>
+                <table>
+                    <tr>
+                        <th>System Size</th>
+                        <th>Per Day</th>
+                        <th>Per Year</th>
+                    </tr>
+                    <tr>
+                        <td id="systemSize"> <span>0</span>
+                            <p>kW</p>
+                        </td>
+                        <td id="perDay"> <span>0</span>
+                            <p>kWh</p>
+                        </td>
+                        <td id="perYear"> <span>0</span>
+                            <p>kWh</p>
+                        </td>
+                    </tr>
+                </table>
 
-                </td>
 
-            </tr>
-        </table>
-    </div>
-    <div class="table">
-        <h3>Savings per year</h3>
-        <table>
-            <tr>
-                <th>Yearly Solar Generated</th>
-                <th>Yearly Electrecity Used</th>
-                <th>Electrecity used with solar</th>
-                <th>Electrecity saved</th>
-                <th>Electrecity saved</th>
-            </tr>
-            <tr>
-                <td id="ySG"> <span>0</span>
-                    <p>kWh</p>
-                </td>
-                <td id="yEU"> <span>0</span>
-                    <p>kWh</p>
-                </td>
-                <td id="eUWS"> <span>0</span>
-                    <p>kWh</p>
-                </td>
-                <td id="eS"> <span>0</span>
-                    <p>kWh</p>
-                </td>
-                <td id="eS"> <span>0</span>
-                    <p>%</p>
+                <!-- Savings per year -->
+                <h3>Savings per year</h3>
+                <table>
+                    <tr>
+                        <th>Yearly Solar Generated</th>
+                        <th>Yearly Electrecity Used</th>
+                        <th>Electrecity After Solar</th>
+                        <th>Electrecity Saved</th>
+                    </tr>
+                    <tr>
+                        <td id="yearSolGen"> <span>0</span>
+                            <p>kWh</p>
+                        </td>
+                        <td id="yearElGen"> <span>0</span>
+                            <p>kWh</p>
+                        </td>
+                        <td id="elAfterSolar"> <span>0</span>
+                            <p>kWh</p>
+                        </td>
+                        <td id="elSaved"> <span>0</span>
+                            <p>%</p>
 
-                </td>
-            </tr>
-        </table>
-    </div>
-    <h3>Graph</h3>
+                        </td>
+                    </tr>
+                </table>
+
+
+                <h3>Graph</h3>
+            </div>
+        </div>
+    </section>
 </body>
 
 <script>
-    const userPanels = document.querySelector('input[name="pNo"]')
-    const panelDrop = document.getElementById("panelDrop")
+    const btnCal = document.querySelector('.btnCal');
+    const elUsed = document.querySelector('input[name="elUsed"]');
+    const elCost = document.querySelector('input[name="elCost"]');
+    const noPanels = document.querySelector('input[name="noPanels"]')
+    const panelWatt = document.getElementById("panelWatt")
+
+    // const textField = document.getElementById("textField");
+
     const selSystemSize = document.getElementById("systemSize");
     const selPerDay = document.getElementById("perDay");
     const selPerYear = document.getElementById("perYear");
-    const textField = document.getElementById("textField");
-    const elUsed = document.querySelector('input[name="elUser"]');
-    const elCost = document.querySelector('input[name="elCost"]');
-    // separate the functions fro each block | sole this with the this object
 
-    // TO FINISH UP do the SOlar Generated Electicity used create new function for separate filds
-    elUsed.addEventListener('change', () => {
-        const electricityCost = elCost.value
-        const electricityUsed = elUsed.value
+    const yearSolGen = document.getElementById("yearSolGen");
+    const yearElGen = document.getElementById("yearElGen");
+    const elAfterSolar = document.getElementById("elAfterSolar");
+    const elSaved = document.getElementById("elSaved");
 
-        console.log(electricityCost + " " + electricityUsed)
+    // for loop if one of the fileds it chagne then we go to the function cal 
 
-    })
+    btnCal.onclick = cal;
 
-    elCost.addEventListener('change', () => {
-        const electricityCost = elCost.value
-        const electricityUsed = elUsed.value
+    function cal() {
+        this.elUsed = elUsed.value;
+        this.elCost = elCost.value;
+        this.noPanels = noPanels.value;
+        this.panelWatt = panelWatt.value;
 
-        console.log(electricityCost + " " + electricityUsed)
+        this.selSystemSize = parseInt(this.noPanels * this.panelWatt / 1000)
+        this.selPerDay = parseInt(this.noPanels * this.panelWatt / 1000 * 3.6)
+        this.selPerYear = parseInt(this.noPanels * this.panelWatt / 1000 * 3.6 * 365)
 
-    })
+        selSystemSize.innerHTML = this.selSystemSize + " kWh"
+        selPerDay.innerHTML = this.selPerDay + " kWh"
+        selPerYear.innerHTML = this.selPerYear + " kWh"
 
-    userPanels.addEventListener('change', () => {
-        const panelsNumber = userPanels.value
-        const panelsWatt = panelDrop.value
-        updateValues(panelsNumber, panelsWatt);
-    })
+        this.yearSolGen = parseInt(this.noPanels * this.panelWatt / 1000 * 3.6 * 365)
+        this.yearElGen = parseInt(this.elUsed * 12)
 
-    panelDrop.addEventListener('change', () => {
-        const panelsNumber = userPanels.value
-        const panelsWatt = panelDrop.value
-        updateValues(panelsNumber, panelsWatt);
-        if (panelDrop.value == "otherVal") {
-            textField.innerHTML = '<input type="text" value=" ">';
-            textField.addEventListener('change', () => {
+        console.log(parseInt(this.yearSolGen - this.yearElGen))
+        this.elAfterSolar = parseInt(this.yearSolGen - this.yearElGen)
+        this.elSaved = this.yearElGen / this.yearSolGen * 100
 
-                console.log(textField.value)
-            })
-        }
-
-    })
-
-    function updateValues(panelsNumber, panelsWatt) {
-        //System Size 
-        selSystemSize.innerHTML = parseInt(panelsNumber * panelsWatt / 1000) + " kW"
-            //Per Day Production 
-        selPerDay.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6) + " kWh"
-        selPerYear.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6 * 365) + " kWh"
-        ySG.innerHTML = parseInt(panelsNumber * panelsWatt / 1000 * 3.6 * 365) + " kWh"
-
-    }
-
-    function updateYearElectricity(electricityCost, electricityUsed) {
+        yearSolGen.innerHTML = this.yearSolGen + " kWh"
+        yearElGen.innerHTML = this.yearElGen + " kWh"
+        elAfterSolar.innerHTML = this.elAfterSolar
+        elSaved.innerHTML = this.elSaved.toFixed(2) + " %"
 
 
     }
 
+    /*
+
+    forEach select all inputs fields and if changed activate the cal function 
+    then in the cal check if values are bigger than 0 if noPanels and panelWatt is then you can display the system size and gen if the other are 0 then you wont | then they have to relay on the calculate button if they enter the client bill
+
+    */
 
 
-    // Per Year Production 
-    // Solar generated for the year 
-    // Elecricity Used for the year
-    // Elecricity used after solar 
-    // Difference between electicity saved 
 
-    // Graph -> based per day and month
+
+
+    /*
+        panelWatt.addEventListener('change', () => {
+            if (panelWatt.value == "otherVal") {
+                textField.innerHTML = '<input type="text" value=" ">';
+                textField.addEventListener('change', () => {
+
+                    console.log(textField.value)
+                })
+            }
+
+        })
+    */
+
 
 
     /*
 
-    // add github
-- https://blog.gitnux.com/guides/how-to-push-code-to-github-from-visual-studio-code/
 
 - During the Day | - During the night
 20 | 
